@@ -1,0 +1,9 @@
+<%=form_for 'login' do |f| %>
+<b> Username: </b>
+<%= f.text_field :email %>
+<br><br>
+<b> Password: </b>
+<%= f.password_field :password %>
+<br><br>
+<%=f.submit 'Log In' %>
+<%end%>

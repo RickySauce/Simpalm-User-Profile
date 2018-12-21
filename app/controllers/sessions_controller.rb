@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 
   def create
     @message = nil
-    @user = User.find_by(username: params["login"]["username"])
+    @user = User.find_by(email: params["login"]["email"])
     if !@user || !@user.authenticate(params["login"]["password"])
       @message = "Incorrect Email Address or Password"
       render :json => {:user => @user.username, :errors => @message}
