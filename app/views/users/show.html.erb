@@ -1,6 +1,11 @@
 <h1><%=profile_head%></h1>
 <%= image %>
 <br><br>
+First Name: <%=@user.first_name%><br>
+Last Name: <%=@user.last_name%><br>
+Email: <%=@user.email%><br>
+Birthday: <%=@user.dob%><br>
+<br><br>
 
 <% if logged_in? && current_user == @user %>
   <%=link_to 'Edit Profile', edit_user_path(current_user)%>
