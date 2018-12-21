@@ -2,6 +2,7 @@ require 'rmagick'
 
 class UsersController < ApplicationController
   before_action :already_logged_in, only: [:new, :create]
+  before_action :require_logged_in, only: [:edit, :update]
 
   def new
     @user = User.new
@@ -18,15 +19,25 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by_id(params[:id])
+    if @user
+      render :show
+    else
+      redirect_to root_path
+    end
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find_by_id(params[:id])
+    if @user
+      render :edit
+    else
+      redirect_to root_path
+    end
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = User.find_by_id(params[:id])
     if @user.update(user_params)
       redirect_to user_path(@user)
     else
