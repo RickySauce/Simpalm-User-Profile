@@ -1,6 +1,8 @@
 <h1>Welcome <%=@user.first_name%>!</h1>
+<%= image_tag @user.avatar.url(:medium) %>
+<br><br>
 
-<% if current_user == @user %>
-<%=link_to 'Edit Profile', edit_user_path(current_user)%>
-<%=link_to 'Log Out', logout_path%>
+<% if logged_in? && current_user == @user %>
+  <%=link_to 'Edit Profile', edit_user_path(current_user)%>
+  <%=link_to 'Log Out', logout_path%>
 <%end%>

@@ -1,3 +1,5 @@
+require 'rmagick'
+
 class UsersController < ApplicationController
   before_action :already_logged_in, only: [:new, :create]
 
@@ -28,8 +30,9 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_path(@user)
     else
+      flash[:message] = "Successfully Updated Profile"
       render :edit
-    end 
+    end
   end
 
   private
@@ -42,6 +45,7 @@ class UsersController < ApplicationController
         :email,
         :password,
         :password_confirmation,
+        :avatar
       )
     end
 
