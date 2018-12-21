@@ -6,14 +6,14 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @message = nil
     @user = User.find_by(email: params["login"]["email"])
     if !@user || !@user.authenticate(params["login"]["password"])
-      @message = "Incorrect Email Address or Password"
-      render :json => {:user => @user.username, :errors => @message}
+      flash[:message] = "Incorrect Email Address or Password"
+      render :new
     else
       session[:user_id] = @user.id
-      render :json => @user
+      flash[:message] = "Successfully Signed In!"
+      redirect_to user_path(@user)
     end
   end
 
