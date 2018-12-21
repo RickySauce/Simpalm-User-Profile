@@ -1,5 +1,5 @@
-<h1>Welcome <%=@user.first_name%>!</h1>
-<%= image_tag @user.avatar.url(:medium) %>
+<h1><%=profile_head%></h1>
+<%= image %>
 <br><br>
 
 <% if logged_in? && current_user == @user %>
